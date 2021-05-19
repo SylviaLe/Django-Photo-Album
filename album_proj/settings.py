@@ -22,12 +22,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['ALBUM_KEY']
-#django-insecure-7&zw5e#gdu_6al6g*i(-%e@w@kegiz)ddemb9ks2mhmanq0-u-
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sylviasalbum.herokuapp.com']
 
 
 # Application definition
@@ -136,9 +135,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'images')  #tell where to upload t
 AWS_QUERYSTRING_AUTH = False
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_ACCESS_KEY_ID = os.environ['ALBUM_BUCKET_ACCESS_KEY_ID']
-#AKIAWHNNWB7OKKXKFJFX
 AWS_SECRET_ACCESS_KEY = os.environ['ALBUM_BUCKET_SECRET_KEY']
-#CqlF2cf4nO4c7y8RnkhmoGYqm3KJEcayej3To573
 AWS_STORAGE_BUCKET_NAME = os.environ['ALBUM_BUCKET_NAME']
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
