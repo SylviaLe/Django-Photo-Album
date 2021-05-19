@@ -1,3 +1,3 @@
-web: gunicorm album_proj.wsgi:application --log-file - --log-level debug
+web: gunicorn album_proj.wsgi:application --log-file - --log-level debug
 python manage.py collectstatic --noinput
 manage.py migrate
