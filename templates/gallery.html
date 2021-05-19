@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Gallery{% endblock title %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg mt-3 me-5">
+  <div class="container-fluid">
+    <!-- To make things don't stick to the edge -->
+
+  <button class="navbar-toggler" type ="button" data-toggle="collapse" data-target="#navbarMenu">
+      <i class="fas fa-bars"></i>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarMenu">
+      <ul class="navbar-nav ms-auto my-3-lg-0">
+        <!-- me is margin or padding right. This push things away from the right side -->
+        <li class="nav-item px-2" data-tilt data-tilt-scale="1.1">
+          <a href="https://www.facebook.com/lara.stark.338" class="nav-link text-light"><i class="fab fa-facebook fa-lg"></i></a>
+          </li>  
+          
+          <li class="nav-item px-2" data-tilt data-tilt-scale="1.1">
+              <a href="https://www.instagram.com/sylvia_le1119/?hl=en" class="nav-link text-light"><i class="fab fa-instagram fa-lg"></i></a>
+          </li>
+
+          <li class="nav-item px-2" data-tilt data-tilt-scale="1.1">
+              <a href="https://www.linkedin.com/in/sylviale1911/" class="nav-link text-light"><i class="fab fa-linkedin-in fa-lg"></i></a>
+          </li>
+
+          <li class="nav-item px-2" data-tilt data-tilt-scale="1.1">
+            <a href="https://github.com/SylviaLe" class="nav-link text-light"><i class="fab fa-github fa-lg"></i></a>
+        </li>
+      </ul>
+  </div>
+  </div>
+</nav>
+
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-interval="800">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    </div>
+
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="{% static 'images/11.jpeg' %}" class="d-block w-100 carousel-img" alt="...">
+          <div class="container">
+            <div class="carousel-caption hero-text">
+              <h1>My Album</h1>
+              <h5 class='fw-light'>My drawings, photos I took and photos of me</h5>
+              <p><a class="btn btn-lg btn-outline-light" href="#main" role="button">View Photos</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/15.jpeg' %}" class="d-block w-100 carousel-img" alt="...">
+          <div class="container">
+            <div class="carousel-caption hero-text">
+              <h1>My Album</h1>
+              <h5 class='fw-light'>My drawings, photos I took and photos of me</h5>
+              <p><a class="btn btn-lg btn-outline-light" href="#main" role="button">View Photos</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/6.jpeg' %}" class="d-block w-100 carousel-img" alt="...">
+          <div class="container">
+            <div class="carousel-caption hero-text">
+              <h1>My Album</h1>
+              <h5 class='fw-light'>My drawings, photos I took and photos of me</h5>
+              <p><a class="btn btn-lg btn-outline-light" href="#main" role="button">View Photos</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/20.jpeg' %}" class="d-block w-100 carousel-img" alt="...">
+          <div class="container">
+            <div class="carousel-caption hero-text">
+              <h1>My Album</h1>
+              <h5 class='fw-light'>My drawings, photos I took and photos of me</h5>
+              <p><a class="btn btn-lg btn-outline-light" href="#main" role="button">View Photos</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="{% static 'images/22.jpeg' %}" class="d-block w-100 carousel-img" alt="...">
+          <div class="container">
+            <div class="carousel-caption hero-text">
+              <h1>My Album</h1>
+              <h5 class='fw-light'>My drawings, photos I took and photos of me</h5>
+              <p></p><a class="btn btn-lg btn-outline-light" href="#main" role="button">View Photos</a></p>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+
+<div class="container container-mansory" id="main">
+    <div class="row my-5">
+        <div class="col-md-3 sidebars">
+            <div class="card">
+                <div class="card-header">
+                    Categories
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a href="{% url 'gallery' %}">All</a>
+                    </li>
+                    {% for category in categories %}
+                    <li class=" list-group-item">
+                        <a href="{% url 'cate' category.pk %}">
+                            {{category.name}} ({{category.photos.count}})
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% if user.is_authenticated %}
+              <a href="{% url 'photo_new' %}" class="btn btn-info text-light text-center">Add Photo</a>
+              <a href="{% url 'cate_new' %}" class="btn btn-info text-light text-center px-3">Add Category</a>
+            {% endif %}
+        </div>
+        <div class="col-md-9">
+            <div class="row row-cols-xl-3 row-cols-md-2 row-cols-sm-1" data-masonry='{"percentPosition": true }'>
+                {% for photo in photos %}
+                <div class="col">
+                    <div class="card my-1">
+                        <a href="{% url 'photo' photo.pk %}">
+                          <img class="image-fluid w-100" src="{{photo.image.url}}" alt="Card image cap">
+                          {#the url is supplied by the settings#}
+                        </a>
+                    </div>
+                </div>
+                {% empty %}
+                <h3>No photos...</h3>
+                {% endfor %}
+{% endblock content%}

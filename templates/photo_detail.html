@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ photo.title }}{% endblock title %}
+
+
+{% block content %}
+        <div class="container w-80">
+            <a href="{% url 'gallery'%}" class="btn btn-info mb-5">Go back</a>
+            <div class="row">
+                <div class="col-md-6 mb-5">
+                    <img src='{{photo.image.url}}' class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <h2 class="my-3">{{ photo.name }}</h2>
+                    <p class="text-muted">{{photo.category}}</p>
+                    <p class='fs-6'>{{photo.description}}</p>
+                    {% if user.is_authenticated %}
+                        <a class="btn btn-warning mt-2 mb-3" href="{% url 'photo_edit' photo.pk %}">Edit</a>
+                        <a class="btn btn-danger mt-2 mb-3" href="{% url 'photo_del' photo.pk %}">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+{% endblock content %}
