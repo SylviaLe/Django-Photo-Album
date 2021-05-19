@@ -1,1 +1,1 @@
-web: gunicorm album_proj.wsgi
+web: gunicorm album_proj.wsgi --log-file -
