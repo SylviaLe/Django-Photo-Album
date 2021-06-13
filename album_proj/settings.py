@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv('ALBUM_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sylviasalbum.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,13 +43,11 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'storages',
-    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -128,7 +126,6 @@ USE_TZ = True
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = '/images/'
@@ -136,11 +133,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'images')  #tell where to upload t
 
 AWS_QUERYSTRING_AUTH = False
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 AWS_ACCESS_KEY_ID = os.getenv('ALBUM_BUCKET_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('ALBUM_BUCKET_SECRET_KEY')
 AWS_STORAGE_BUCKET_NAME = os.getenv('ALBUM_BUCKET_NAME')
 AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
+AWS_DEFAULT_ACL = 'public-read'
+
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
+STATIC_URL = 'https://%s/' % (AWS_S3_CUSTOM_DOMAIN)
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
